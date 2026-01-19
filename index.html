@@ -39,6 +39,7 @@
         .header p {
             margin: 2px 0;
             font-size: 13px;
+            text-transform: uppercase; /* হেডার প্যারাগ্রাফ বড় হাতের */
         }
 
         hr {
@@ -54,6 +55,7 @@
             font-size: 15px;
             font-weight: bold;
             margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
         .sales-by-left select, .date-right input {
@@ -63,22 +65,26 @@
             outline: none;
             background: transparent;
             cursor: pointer;
+            text-transform: uppercase;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 10px; /* ফন্ট সাইজ সামান্য কমানো হয়েছে র‍্যাপ ঠিক রাখতে */
             table-layout: fixed;
+            word-wrap: break-word;
         }
 
         th, td {
             border: 1px solid #000;
-            padding: 5px;
+            padding: 4px;
             text-align: left;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
+            /* Wrap নিশ্চিত করার জন্য নিচের প্রপার্টিগুলো */
+            white-space: normal; 
+            word-break: break-all;
             vertical-align: middle;
+            text-transform: uppercase; /* সব ঘর বড় হাতের */
         }
 
         th { 
@@ -87,26 +93,30 @@
             font-weight: bold;
         }
 
+        /* ইনপুট এবং টেক্সট এরিয়া অটোমেটিক বড় হাতের করার জন্য */
         textarea, select, input {
             width: 100%;
             border: none;
             outline: none;
             background: transparent;
             font-family: inherit;
-            font-size: 11px;
+            font-size: 10px;
             display: block;
             box-sizing: border-box;
-            resize: none;
+            resize: vertical;
+            text-transform: uppercase; 
+            white-space: normal;
         }
 
         tfoot { font-weight: bold; background-color: #f9f9f9; }
-        tfoot td { text-align: right; }
+        tfoot td { text-align: right; text-transform: uppercase; }
 
         .note-section {
             margin-top: 20px;
             font-size: 13px;
             font-weight: bold;
             font-style: italic;
+            text-transform: uppercase;
         }
 
         .signature-section {
@@ -120,8 +130,8 @@
 
         .sig-box { text-align: center; width: 200px; }
         .sig-line { border-top: 1px solid #000; margin-bottom: 5px; }
-        .sig-text { font-weight: bold; font-size: 14px; }
-        .sig-title { font-size: 12px; font-weight: normal; }
+        .sig-text { font-weight: bold; font-size: 14px; text-transform: uppercase; }
+        .sig-title { font-size: 12px; font-weight: normal; text-transform: uppercase; }
 
         .action-buttons {
             margin-top: 20px;
@@ -136,6 +146,7 @@
             border: none;
             border-radius: 4px;
             font-weight: bold;
+            text-transform: uppercase;
         }
 
         .btn-add { background-color: #28a745; color: white; }
@@ -168,7 +179,7 @@
             Sales By: 
             <select>
                 <option value="">Select Staff</option>
-                <option>Wasiful Islam </option><option>Asif Chowdry</option><option>Md Shahariar Rizvy</option>
+                <option>Wasiful Islam</option><option>Asif Chowdhury</option><option>Md Shahariar Rizvy</option>
                 <option>Md. Sirajul Islam</option><option>Safat Khan Siddiki</option><option>Kamrun Nahar Hasan</option>
                 <option>Samia Binte Bashar</option><option>Abu Bakar</option><option>Md Bellal Hossain Noyon</option>
                 <option>Md Jubair Bhuyan</option>
@@ -184,17 +195,17 @@
     <table id="salesTable">
         <thead>
             <tr>
-                <th width="14%">Pax Name</th> 
+                <th width="12%">Pax Name</th> 
                 <th width="8%">Doc Number/PNR</th>
                 <th width="10%">Invoice Name</th> 
-                <th width="9%">Route</th>
-                <th width="10%">Flying Date</th>
+                <th width="8%">Route</th>
+                <th width="9%">Flying Date</th>
                 <th width="9%">Supplier</th>
                 <th width="9%">Airline Name</th>
-                <th width="8%">Costing</th>
-                <th width="8%">Sale</th>
-                <th width="7%">Comm.</th>
-                <th width="9%">Operated By</th>
+                <th width="7%">Costing</th>
+                <th width="7%">Sale</th>
+                <th width="6%">Comm.</th>
+                <th width="8%">Operated By</th>
                 <th width="8%">Reference</th>
                 <th width="9%">Payment Due Date</th> 
             </tr>
@@ -203,8 +214,7 @@
             <tr>
                 <td><textarea rows="2"></textarea></td>
                 <td><textarea rows="2"></textarea></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><textarea rows="2"></textarea></td> <td><textarea rows="2"></textarea></td>
                 <td><input type="date"></td>
                 <td>
                     <select>
@@ -268,25 +278,17 @@
 </div>
 
 <script>
-    // সংখ্যার সাথে কমা যোগ করার ফাংশন
     function formatNumber(num) {
         return num.toLocaleString('en-IN'); 
     }
 
-    // কমা সরিয়ে সংখ্যায় রূপান্তর করার ফাংশন
     function parseNumber(str) {
         return parseFloat(str.replace(/,/g, '')) || 0;
     }
 
     function handleNumericInput(el) {
-        // শুধু সংখ্যা ইনপুট নিতে দেওয়া
         let val = el.value.replace(/[^0-9.]/g, '');
-        let num = parseFloat(val) || 0;
-        
-        // ডিসপ্লেতে কমা সহ দেখানো (ইউজার যখন টাইপ করা শেষ করবে তখন ফরম্যাট হবে অথবা টাইপ করার সময়)
-        // এখানে ইনপুট টাইপ করার সময় সরাসরি কমা দেওয়া হয়েছে
         el.value = val !== "" ? formatNumber(parseFloat(val)) : "";
-        
         calculate(el);
     }
 
