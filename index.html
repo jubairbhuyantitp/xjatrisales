@@ -39,7 +39,7 @@
         .header p {
             margin: 2px 0;
             font-size: 13px;
-            text-transform: uppercase;
+            text-transform: uppercase; /* হেডার প্যারাগ্রাফ বড় হাতের */
         }
 
         hr {
@@ -64,24 +64,27 @@
             border-bottom: 1px solid #000;
             outline: none;
             background: transparent;
+            cursor: pointer;
             text-transform: uppercase;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 10px;
+            font-size: 10px; /* ফন্ট সাইজ সামান্য কমানো হয়েছে র‍্যাপ ঠিক রাখতে */
             table-layout: fixed;
+            word-wrap: break-word;
         }
 
         th, td {
             border: 1px solid #000;
             padding: 4px;
             text-align: left;
-            word-wrap: break-word;
+            /* Wrap নিশ্চিত করার জন্য নিচের প্রপার্টিগুলো */
+            white-space: normal; 
+            word-break: break-all;
             vertical-align: middle;
-            text-transform: uppercase;
-            white-space: normal;
+            text-transform: uppercase; /* সব ঘর বড় হাতের */
         }
 
         th { 
@@ -90,6 +93,7 @@
             font-weight: bold;
         }
 
+        /* ইনপুট এবং টেক্সট এরিয়া অটোমেটিক বড় হাতের করার জন্য */
         textarea, select, input {
             width: 100%;
             border: none;
@@ -100,7 +104,8 @@
             display: block;
             box-sizing: border-box;
             resize: vertical;
-            text-transform: uppercase;
+            text-transform: uppercase; 
+            white-space: normal;
         }
 
         tfoot { font-weight: bold; background-color: #f9f9f9; }
@@ -111,7 +116,6 @@
             font-size: 13px;
             font-weight: bold;
             font-style: italic;
-            text-transform: uppercase;
         }
 
         .signature-section {
@@ -126,6 +130,7 @@
         .sig-box { text-align: center; width: 200px; }
         .sig-line { border-top: 1px solid #000; margin-bottom: 5px; }
         .sig-text { font-weight: bold; font-size: 14px; text-transform: uppercase; }
+        .sig-title { font-size: 12px; font-weight: normal; text-transform: uppercase; }
 
         .action-buttons {
             margin-top: 20px;
@@ -148,6 +153,12 @@
 
         @media print {
             .action-buttons { display: none; }
+            body { padding: 0; }
+            select { appearance: none; -webkit-appearance: none; }
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                display: none;
+                -webkit-appearance: none;
+            }
         }
     </style>
 </head>
@@ -165,63 +176,67 @@
     <div class="meta-line">
         <div class="sales-by-left">
             Sales By: 
-            <select id="reportSalesBy">
+            <select>
                 <option value="">Select Staff</option>
-                <option>Wasiful Islam</option><option>Asif Chowdry</option><option>Md Shahariar Rizvy</option>
+                <option>Wasiful Islam</option><option>Asif Chowdhury</option><option>Md Shahariar Rizvy</option>
                 <option>Md. Sirajul Islam</option><option>Safat Khan Siddiki</option><option>Kamrun Nahar Hasan</option>
                 <option>Samia Binte Bashar</option><option>Abu Bakar</option><option>Md Bellal Hossain Noyon</option>
                 <option>Md Jubair Bhuyan</option>
             </select>
         </div>
+
         <div class="date-right">
-            Date of Report: <input type="date" id="reportDate">
+            Date of Report: <input type="date">
         </div>
     </div>
+    <br>
 
     <table id="salesTable">
         <thead>
             <tr>
                 <th width="12%">Pax Name</th> 
-                <th width="8%">Doc/PNR</th>
+                <th width="8%">Doc Number/PNR</th>
                 <th width="10%">Invoice Name</th> 
                 <th width="8%">Route</th>
                 <th width="9%">Flying Date</th>
                 <th width="9%">Supplier</th>
-                <th width="9%">Airline</th>
+                <th width="9%">Airline Name</th>
                 <th width="7%">Costing</th>
                 <th width="7%">Sale</th>
                 <th width="6%">Comm.</th>
                 <th width="8%">Operated By</th>
                 <th width="8%">Reference</th>
-                <th width="9%">Payment Due</th> 
+                <th width="9%">Payment Due Date</th> 
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><textarea rows="2"></textarea></td>
                 <td><textarea rows="2"></textarea></td>
-                <td><textarea rows="2"></textarea></td>
-                <td><textarea rows="2"></textarea></td>
+                <td><textarea rows="2"></textarea></td> <td><textarea rows="2"></textarea></td>
                 <td><input type="date"></td>
                 <td>
                     <select>
                         <option value="">Supplier</option>
-                        <option>IATA</option><option>NON IATA</option><option>AMY</option><option>SHARETRIP</option><option>FLY ZONE</option><option>TRIPLOVER</option>
+                        <option>IATA</option><option>NON IATA</option><option>HAJI AIR TRAVEL</option><option>AMY</option><option>SHARETRIP</option><option>FLY ZONE</option><option>TRIPLOVER</option><option>CTG TRAVEL</option><option>BLUESKY</option><option>STAR SUN</option><option>S.A TRAVELS</option><option>BRB TRAVELS</option><option>AL-AQSA</option><option>ITS HOLIDAYS LTD.</option><option>AL BAYT INTER</option><option>TURKISH AIRLINES</option><option>QATAR AIRWAYS</option><option>JAZEERA AIR INTER.</option><option>AIR ASIA</option><option>Nusrah IT Care</option><option>CTG TRAVEL (MR. SHAHADAT)</option><option>THE STAR TRAVELS</option><option>SUMA TRAVELS</option><option>Singapur Air</option><option>DISCOVER HOLIDAYS LTD.</option><option>BIMAN OFFICE</option><option>SAUDIA TRAVEL</option><option>TAKE TRIP</option><option>IMO HOLIDAYS</option><option>Jet Aviation Ltd</option>
                     </select>
                 </td>
                 <td>
                     <select>
                         <option value="">Airline</option>
-                        <option>BIMAN</option><option>US BANGLA</option><option>EMIRATES</option><option>QATAR</option>
+                        <option>BIMAN</option><option>US BANGLA</option><option>NOVOAIR</option><option>FLY DUBAI</option><option>AIR ARABIA</option><option>EMIRATES AIRLINES</option><option>ETIHAD AIRWAYS</option><option>SAUDI ARABIA AIRLINES</option><option>QATAR AIRWAYS</option><option>OMAN AIR</option><option>SALAM AIR</option><option>JAZEERA AIRWAYS</option><option>KUWAIT AIRWAYS</option><option>YEMEN AIRWAYS</option><option>MALAYSIA AIRLINES</option><option>SINGAPORE AIRWAYS</option><option>TURKISH AIRLINES</option><option>SRILANKAN AIRLINES</option><option>INDIGO</option><option>SPICEJET</option><option>AIR INDIA</option><option>THAI AIRWAYS</option><option>Malindo Airways</option><option>VISTARA</option><option>GULF AIR</option><option>AIR ASTRA</option><option>CHINA SOUTHERN</option><option>CHINA EASTERN</option><option>UZBEKISTAN AIRWAY</option><option>AZERBAIJAN AIRLINES</option><option>CATHAY PACIFIC AIRWAYS</option><option>CEBU PACIFIC</option><option>HIMALAYA AIRLINES</option><option>SWISS AIR</option><option>LUFTHANSA AIRLINES</option><option>AIR ASIA</option><option>MYANMAR AIRWAYS INTER.</option><option>EGYPT AIR</option><option>AIR CHINA</option><option>FITS AIR</option><option>ETHIOPIAN AIR</option>
                     </select>
                 </td>
-                <td><input type="text" class="cost" oninput="handleNumericInput(this)" value="0"></td>
-                <td><input type="text" class="sell" oninput="handleNumericInput(this)" value="0"></td>
+                <td><input type="text" class="cost numeric-input" oninput="handleNumericInput(this)" value="0"></td>
+                <td><input type="text" class="sell numeric-input" oninput="handleNumericInput(this)" value="0"></td>
                 <td><input type="text" class="comm" readonly value="0"></td>
                 <td>
                     <select>
                         <option value="">Staff</option>
-                        <option>Wasiful</option><option>Asif</option><option>Rizvy</option><option>Noyon</option>
+                        <option>Wasiful Islam</option><option>Asif</option><option>Rizvy</option>
+                        <option>Md. Sirajul Islam</option><option>Safat Khan Siddiki</option><option>Nodi</option>
+                        <option>Samia</option><option>Abu Bakar</option><option>Noyon</option>
+                        <option>Jubair</option>
                     </select>
                 </td>
                 <td><textarea rows="2"></textarea></td>
@@ -230,7 +245,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="7">GRAND TOTAL:</td>
+                <td colspan="7" style="text-align: right; padding-right: 10px;">GRAND TOTAL:</td>
                 <td id="totalCost">0</td>
                 <td id="totalSell">0</td>
                 <td id="totalComm">0</td>
@@ -244,21 +259,31 @@
     </div>
 
     <div class="signature-section">
-        <div class="sig-box"><div class="sig-line"></div><div class="sig-text">Sales By</div></div>
-        <div class="sig-box"><div class="sig-line"></div><div class="sig-text">Approved By</div></div>
+        <div class="sig-box">
+            <div class="sig-line"></div>
+            <div class="sig-text">Sales By</div>
+        </div>
+        <div class="sig-box">
+            <div class="sig-line"></div>
+            <div class="sig-text">Approved By</div>
+            <div class="sig-title">Head of Business Operation</div>
+        </div>
     </div>
 
     <div class="action-buttons">
         <button class="btn btn-add" onclick="addRow()">+ Add New Entry</button>
-        <button class="btn btn-print" onclick="handlePrint()">Print Report</button>
+        <button class="btn btn-print" onclick="window.print()">Print Report</button>
     </div>
 </div>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbw1cgmQBbS2FHREFoFYG6f4jnhYbGJsxUL7CFPa7pcejybBQQcatIgr1-qJMl3hopChUA/exec';
+    function formatNumber(num) {
+        return num.toLocaleString('en-IN'); 
+    }
 
-    function formatNumber(num) { return num.toLocaleString('en-IN'); }
-    function parseNumber(str) { return parseFloat(str.replace(/,/g, '')) || 0; }
+    function parseNumber(str) {
+        return parseFloat(str.replace(/,/g, '')) || 0;
+    }
 
     function handleNumericInput(el) {
         let val = el.value.replace(/[^0-9.]/g, '');
@@ -270,7 +295,9 @@
         let row = el.closest('tr');
         let cost = parseNumber(row.querySelector('.cost').value);
         let sell = parseNumber(row.querySelector('.sell').value);
-        row.querySelector('.comm').value = formatNumber(sell - cost);
+        let comm = sell - cost;
+        
+        row.querySelector('.comm').value = formatNumber(comm);
         updateTotals();
     }
 
@@ -279,6 +306,7 @@
         document.querySelectorAll('.cost').forEach(i => tCost += parseNumber(i.value));
         document.querySelectorAll('.sell').forEach(i => tSell += parseNumber(i.value));
         document.querySelectorAll('.comm').forEach(i => tComm += parseNumber(i.value));
+        
         document.getElementById('totalCost').innerText = formatNumber(tCost);
         document.getElementById('totalSell').innerText = formatNumber(tSell);
         document.getElementById('totalComm').innerText = formatNumber(tComm);
@@ -287,47 +315,15 @@
     function addRow() {
         let tbody = document.querySelector("#salesTable tbody");
         let newRow = tbody.rows[0].cloneNode(true);
-        newRow.querySelectorAll('input, textarea').forEach(i => i.value = i.classList.contains('cost') || i.classList.contains('sell') || i.classList.contains('comm') ? "0" : "");
+        newRow.querySelectorAll('input, textarea').forEach(i => {
+            if(i.classList.contains('cost') || i.classList.contains('sell') || i.classList.contains('comm')) i.value = "0";
+            else i.value = "";
+        });
         newRow.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
         tbody.appendChild(newRow);
-    }
-
-    async function sendDataToSheet() {
-        let rows = [];
-        let reportDate = document.getElementById('reportDate').value;
-        let salesByHeader = document.getElementById('reportSalesBy').value;
-
-        document.querySelectorAll("#salesTable tbody tr").forEach(tr => {
-            rows.push({
-                reportDate: reportDate,
-                salesByHeader: salesByHeader,
-                paxName: tr.querySelector('td:nth-child(1) textarea').value,
-                pnr: tr.querySelector('td:nth-child(2) textarea').value,
-                invoice: tr.querySelector('td:nth-child(3) textarea').value,
-                route: tr.querySelector('td:nth-child(4) textarea').value,
-                flyingDate: tr.querySelector('td:nth-child(5) input').value,
-                supplier: tr.querySelector('td:nth-child(6) select').value,
-                airline: tr.querySelector('td:nth-child(7) select').value,
-                cost: tr.querySelector('.cost').value,
-                sale: tr.querySelector('.sell').value,
-                comm: tr.querySelector('.comm').value,
-                operatedBy: tr.querySelector('td:nth-child(11) select').value,
-                ref: tr.querySelector('td:nth-child(12) textarea').value,
-                dueDate: tr.querySelector('td:nth-child(13) input').value
-            });
-        });
-
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: JSON.stringify(rows)
-        }).catch(err => console.error(err));
-    }
-
-    function handlePrint() {
-        sendDataToSheet();
-        window.print();
+        updateTotals();
     }
 </script>
+
 </body>
 </html>
